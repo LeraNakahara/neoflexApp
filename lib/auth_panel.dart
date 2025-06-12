@@ -17,7 +17,7 @@ class AuthPanelController extends ChangeNotifier {
   }
 }
 
-class AuthPanel extends StatelessWidget {
+class AuthPanel extends StatefulWidget {
   final AuthPanelController controller;
   final Function(String) onLoginSuccess;
   final HolidayTheme theme;
@@ -30,25 +30,40 @@ class AuthPanel extends StatelessWidget {
   });
 
   @override
+  State<AuthPanel> createState() => _AuthPanelState();
+}
+
+class _AuthPanelState extends State<AuthPanel> {
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AnimatedPositioned(
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
-      bottom: controller.isOpen ? 0 : -MediaQuery.of(context).size.height * 0.5,
+      bottom: widget.controller.isOpen ? 0 : -MediaQuery.of(context).size.height * 0.5,
       left: 0,
       right: 0,
       child: GestureDetector(
         onVerticalDragUpdate: (details) {
           if (details.primaryDelta! > 5) {
-            controller.close();
+            widget.controller.close();
           } else if (details.primaryDelta! < -5) {
-            controller.open();
+            widget.controller.open();
           }
         },
         child: Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            color: theme.panelColor,
+            color: widget.theme.panelColor,
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
@@ -79,11 +94,12 @@ class AuthPanel extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: theme.textColor,
+                  color: widget.theme.textColor,
                 ),
               ),
               const SizedBox(height: 20),
               TextField(
+                controller: _usernameController,
                 decoration: InputDecoration(
                   labelText: 'Имя пользователя',
                   border: OutlineInputBorder(
@@ -95,6 +111,7 @@ class AuthPanel extends StatelessWidget {
               ),
               const SizedBox(height: 15),
               TextField(
+                controller: _passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: 'Пароль',
@@ -108,10 +125,11 @@ class AuthPanel extends StatelessWidget {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  onLoginSuccess('Пользователь');
+                  final username = _usernameController.text.trim();
+                  widget.onLoginSuccess(username.isNotEmpty ? username : 'Пользователь');
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: theme.buttonColor,
+                  backgroundColor: widget.theme.buttonColor,
                   minimumSize: const Size(double.infinity, 50),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -120,7 +138,7 @@ class AuthPanel extends StatelessWidget {
                 child: Text(
                   'Войти',
                   style: TextStyle(
-                    color: theme.buttonTextColor,
+                    color: widget.theme.buttonTextColor,
                     fontSize: 18,
                   ),
                 ),
