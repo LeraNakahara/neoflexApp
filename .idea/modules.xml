@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+<module fileurl="file://$PROJECT_DIR$/packages/demo_package/melos_demo_package.iml" filepath="$PROJECT_DIR$/packages/demo_package/melos_demo_package.iml" />
+<module fileurl="file://$PROJECT_DIR$/apps/neoflexapp/melos_flutter_app.iml" filepath="$PROJECT_DIR$/apps/neoflexapp/melos_flutter_app.iml" />
+<module fileurl="file://$PROJECT_DIR$/melos_neoflexapp.iml" filepath="$PROJECT_DIR$/melos_neoflexapp.iml" />
+    </modules>
+  </component>
+</project>
