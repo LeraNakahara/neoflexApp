@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 
-class HolidayTheme {
+/*class HolidayTheme {
   final String holidayName;
   final Color backgroundColor;
   final Color appBarColor;
@@ -46,6 +46,12 @@ class HolidayThemes {
     _isNewYear: _newYearTheme,
     _isVictoryDay: _victoryDayTheme,
     _isRussiaDay: _russiaDayTheme,
+    _isDayofStudy: _dayofStudyTheme,
+    _isWomenDay : _womenDayTheme,
+    _isProgrammerDay : _programmerDayTheme,
+    _isPatriotDay: _patriotDayTheme,
+    _isLabouaryDay : _LabouaryDayTheme
+
   };
 
   static bool _isNewYear(DateTime date) {
@@ -60,7 +66,38 @@ class HolidayThemes {
     return date.month == 6 && date.day == 12;
   }
 
-  static HolidayTheme _newYearTheme() {
+  static bool _isDayofStudy (DateTime date){
+    return date.month == 9 && date.day == 1;
+  }
+
+  static bool _isWomenDay (DateTime date){
+    return date.month == 3 && date.day == 8;
+  }
+
+static bool _isProgrammerDay(DateTime date) {
+  int year = date.year;
+
+  bool isLeap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+
+  if (isLeap) {
+    return date.month == 9 && date.day == 12;
+  } else {
+    return date.month == 9 && date.day == 13;
+  }
+}
+
+static bool _isPatriotDay (DateTime date){
+  return date.month == 2 && date.day == 23;
+}
+
+static bool _isLabouaryDay (DateTime date){
+  return date.month == 5 && date.day == 1;
+}
+
+}
+  
+
+  /*static HolidayTheme _newYearTheme() {
     return HolidayTheme(
       holidayName: 'С Новым Годом!',
       backgroundColor: Colors.green[50]!,
@@ -103,7 +140,7 @@ class HolidayThemes {
       icon: Icons.flag,
       appBarTitle: 'День России',
     );
-  }
+  }*/
 
   static Future<HolidayTheme> getThemeForDateAsync(DateTime date) async {
     await Future.delayed(const Duration(milliseconds: 50));
@@ -118,4 +155,5 @@ class HolidayThemes {
   }
 }
 
-typedef HolidayChecker = bool Function(DateTime date);
+
+typedef HolidayChecker = bool Function(DateTime date);*/ */
