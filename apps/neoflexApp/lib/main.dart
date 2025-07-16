@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-//import 'firstList.dart';
-//import 'holiday_themes.dart';
-import 'themes/new_year.dart';
-import 'themes/labor_day.dart';
-import 'themes/patriot_day.dart';
-import 'themes/russia_day.dart';
+import 'holiday_themes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Праздничное приложение',
       debugShowCheckedModeBanner: false,
-      home: const RussiaDay()
+      home: getHolidayScreenForDate(DateTime.now()),
     );
   }
 }

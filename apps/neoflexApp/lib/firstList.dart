@@ -1,4 +1,4 @@
-/*Simport 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 import 'auth_panel.dart';
 import 'holiday_themes.dart';
 
@@ -65,14 +65,6 @@ class _FirstListScreenState extends State<FirstListScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                if (_isAuthenticated)
-                  Text(
-                    'Добро пожаловать, $_username!',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: _currentTheme.textColor,
-                    ),
-                  ),
                 const SizedBox(height: 20),
                 Text(
                   _currentTheme.holidayName,
@@ -94,7 +86,6 @@ class _FirstListScreenState extends State<FirstListScreen> {
           AuthPanel(
             controller: _authPanelController,
             onLoginSuccess: _onLoginSuccess,
-            theme: _currentTheme,
           ),
         ],
       ),
