@@ -5,11 +5,19 @@ environment:
 workspace:
   - packages/demo_package
   - apps/neoflexApp
+  - packages/demo_pack
 
 dev_dependencies:
   melos: ^7.0.0-dev.8
 
 melos:
 # packages
+  scripts:
+    build:
+      run: dart run build_runner build
+      exec:
+        concurrency: 4
+      packageFiltres:
+        dependsOn: build_runner
 
 

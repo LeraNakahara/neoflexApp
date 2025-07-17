@@ -12,42 +12,43 @@ import 'themes/women day.dart';
 Widget getHolidayScreenForDate(DateTime date) {
   // Новый год: 25-31 декабря
   if (date.month == 12 && date.day >= 25 && date.day <= 31) {
-    return FirstListScreen(holidayScreen: const NewYear());
+    return FirstListScreen(holidayScreen: const NewYear(), selectedDate: date,);
   }
   // 9 мая
   if (date.month == 5 && date.day == 9) {
-    return FirstListScreen(holidayScreen: const NinthMayScreen());
+    return FirstListScreen(holidayScreen: const NinthMayScreen(), selectedDate: date,);
   }
   // 1 мая
   if (date.month == 5 && date.day == 1) {
-    return FirstListScreen(holidayScreen: const LaborDay());
+    return FirstListScreen(holidayScreen: const LaborDay(), selectedDate: date,);
   }
   // 23 февраля
   if (date.month == 2 && date.day == 23) {
-    return FirstListScreen(holidayScreen: const PatriotDay());
+    return FirstListScreen(holidayScreen: const PatriotDay(), selectedDate: date,);
   }
   // 12 июня
   if (date.month == 6 && date.day == 12) {
-    return FirstListScreen(holidayScreen: const RussiaDay());
+    return FirstListScreen(holidayScreen: const RussiaDay(), selectedDate: date,);
   }
   // 1 сентября
   if (date.month == 9 && date.day == 1) {
-    return FirstListScreen(holidayScreen: const KnowledgeDayScreen());
+    return FirstListScreen(holidayScreen: const KnowledgeDayScreen(), selectedDate: date,);
   }
   // 8 марта
   if (date.month == 3 && date.day == 8) {
-    return FirstListScreen(holidayScreen: const WomenDayScreen());
+    return FirstListScreen(holidayScreen: const WomenDayScreen(), selectedDate: date,);
   }
   // День программиста (256-й день года)
   final isLeap = (date.year % 4 == 0 && date.year % 100 != 0) || (date.year % 400 == 0);
   if ((isLeap && date.month == 9 && date.day == 12) || (!isLeap && date.month == 9 && date.day == 13)) {
-    return FirstListScreen(holidayScreen: const ProgrammerDayScreen());
+    return FirstListScreen(holidayScreen: const ProgrammerDayScreen(), selectedDate: date,);
   }
 
   return FirstListScreen(
     holidayScreen: Scaffold(
       appBar: AppBar(title: const Text('Сегодня не праздник')),
-      body: const Center(child: Text('Сегодня нет праздничной темы', style: TextStyle(fontSize: 24))),
+      body: const Center(child: Text('Сегодня нет праздничной темы')),
     ),
+    selectedDate: date,
   );
 }
