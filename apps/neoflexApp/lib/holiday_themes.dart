@@ -9,7 +9,6 @@ import 'themes/Knowledge day.dart';
 import 'themes/Programmer day.dart';
 import 'themes/women day.dart';
 
-
 Widget getHolidayScreenForDate(DateTime date) {
   // Новый год: 25-31 декабря
   if (date.month == 12 && date.day >= 25 && date.day <= 31) {
@@ -44,7 +43,6 @@ Widget getHolidayScreenForDate(DateTime date) {
   if ((isLeap && date.month == 9 && date.day == 12) || (!isLeap && date.month == 9 && date.day == 13)) {
     return FirstListScreen(holidayScreen: const ProgrammerDayScreen());
   }
-
 
   return FirstListScreen(
     holidayScreen: Scaffold(
