@@ -7,58 +7,49 @@ class LaborDay extends StatefulWidget {
   State<LaborDay> createState() => _LaborDayState();
 }
 
-class _LaborDayState extends State<LaborDay>
-    with TickerProviderStateMixin {
+class _LaborDayState extends State<LaborDay> with TickerProviderStateMixin {
   late final AnimationController _birdController;
-late final Animation<double> _birdAnimation;
-late final Animation<Offset> _birdOffset;
+  late final AnimationController _cloudController;
+  late final Animation<Offset> _cloudOffset;
 
-late final AnimationController _cloudController;
-late final Animation<Offset> _cloudOffset;
+  @override
+  void initState() {
+    super.initState();
 
+   
+    _birdController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 20),
+    )..repeat();
 
- 
-@override
-void initState() {
-  super.initState();
+    
+    _cloudController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 10),
+    )..repeat(reverse: true);
 
- 
-_birdController = AnimationController(
-  vsync: this,
-  duration: const Duration(seconds: 10),
-)..repeat(); 
+    _cloudOffset = Tween<Offset>(
+      begin: Offset.zero,
+      end: const Offset(0.1, 0),
+    ).animate(
+      CurvedAnimation(
+        parent: _cloudController,
+        curve: Curves.linear,
+      ),
+    );
+  }
 
-_birdOffset = Tween<Offset>(
-  begin: const Offset(1.2, 0), 
-  end: const Offset(-1.2, 0),  
-).animate(
-  CurvedAnimation(
-    parent: _birdController,
-    curve: Curves.linear,
-  ),
-);
-
-
-  
-  _cloudController = AnimationController(
-    vsync: this,
-    duration: const Duration(seconds: 20),
-  )..repeat(reverse: true);
-
-  _cloudOffset = Tween<Offset>(
-    begin: Offset.zero,
-    end: const Offset(0.1, 0),
-  ).animate(
-    CurvedAnimation(
-      parent: _cloudController,
-      curve: Curves.linear,
-    ),
-  );
-}
-
+  @override
+  void dispose() {
+    _birdController.dispose();
+    _cloudController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -68,14 +59,16 @@ _birdOffset = Tween<Offset>(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Color(0xFFEFF9FF),  
-                  Color(0xFF2DA8F4),   
-                  Color(0xFFFF7CB9),   
+                  Color(0xFFEFF9FF), // Светло-голубой
+                  Color(0xFF2DA8F4), // Голубой
+                  Color(0xFFFF7CB9), // Розовый
                 ],
-                stops: [0.0, 0.5, 1.0], 
+                stops: [0.0, 0.5, 1.0],
               ),
             ),
           ),
+
+          // Анимация облаков
           Positioned(
             top: 80,
             left: 20,
@@ -88,25 +81,26 @@ _birdOffset = Tween<Offset>(
             ),
           ),
 
+          // Птица
           AnimatedBuilder(
-  animation: _birdAnimation,
-  builder: (context, child) {
-    return Positioned(
-      top: 60 + _birdAnimation.value,
-      right: 10,
-      child: SlideTransition(
-        position: _birdOffset,
-        child: Image.asset(
-          'assets/birds.png',
-          width: 120,
-        ),
-      ),
-    );
-  },
-),
+            animation: _birdController,
+            builder: (context, child) {
+              final double birdWidth = 120;
+              final double birdX = screenWidth * (1.2 - _birdController.value * 2.4);
 
+              return Positioned(
+                top: 60,
+                left: birdX,
+                child: Image.asset(
+                  'assets/birds.png',
+                  width: birdWidth,
+                ),
+              );
+            },
+          ),
 
-              Positioned(
+          // Солнце
+          Positioned(
             top: 0,
             left: 0,
             child: Image.asset(
@@ -115,9 +109,8 @@ _birdOffset = Tween<Offset>(
             ),
           ),
 
-  
-          
-           Positioned(
+          // Сирень
+          Positioned(
             bottom: 0,
             left: 0,
             child: Image.asset(
@@ -125,35 +118,42 @@ _birdOffset = Tween<Offset>(
               height: 200,
             ),
           ),
-          
-             Positioned(
+
+          // Яблоня
+          Positioned(
             bottom: 0,
             right: 0,
             child: Image.asset(
               'assets/appletree.png',
               height: 250,
-              
             ),
           ),
 
-
-          
+         
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-              
-                Container(
-                  margin: const EdgeInsets.all(10),
-                  child: Image.asset('assets/neoflexlogo.png'),
+                Image.asset(
+                  'assets/neoflexlogo.png',
+                  width: 140,
                 ),
                 const SizedBox(height: 30),
-
-                Text(
-                  'Мир.Труд. Май',
-                  style: TextStyle(fontSize:44, fontWeight: FontWeight.bold, color: Colors.white)
-                )
-                
+                const Text(
+                  'Мир. Труд. Май',
+                  style: TextStyle(
+                    fontSize: 44,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    shadows: [
+                      Shadow(
+                        offset: Offset(2, 2),
+                        blurRadius: 4,
+                        color: Colors.black26,
+                      )
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
@@ -162,3 +162,4 @@ _birdOffset = Tween<Offset>(
     );
   }
 }
+
