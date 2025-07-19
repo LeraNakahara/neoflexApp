@@ -118,7 +118,7 @@ class NewYear extends StatelessWidget {
       
       Image.asset(
         'assets/december.png', 
-        width: 120,
+        width: 230,
       ),
 
       const SizedBox(height: 20),

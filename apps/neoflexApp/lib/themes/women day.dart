@@ -18,22 +18,21 @@ class _WomenDayScreenState extends State<WomenDayScreen>
     super.initState();
 
     _controller = AnimationController(
-      duration:
-          const Duration(seconds: 4), // Увеличили длительность до 4 секунд
+      duration: const Duration(seconds: 4),
       vsync: this,
-    )..forward(); // Автоматический запуск анимации
+    )..forward();
 
     _positionAnimation = Tween<Offset>(
-      begin: const Offset(0.1, 0.8), // Начальная позиция (левый низ)
-      end: const Offset(1.5, -0.5), // Конечная позиция (правый верх)
+      begin: const Offset(0.1, 0.8),
+      end: const Offset(1.5, -0.5),
     ).animate(CurvedAnimation(
       parent: _controller,
       curve: Curves.easeInOut,
     ));
 
     _scaleAnimation = Tween<double>(
-      begin: 1.0, // Увеличили начальный размер
-      end: 1.5, // Увеличили конечный размер
+      begin: 1.0,
+      end: 1.5,
     ).animate(CurvedAnimation(
       parent: _controller,
       curve: Curves.easeInOut,
@@ -65,7 +64,7 @@ class _WomenDayScreenState extends State<WomenDayScreen>
         ),
         child: Stack(
           children: [
-            // Цветок в левом верхнем углу
+            // Цветки по углам
             Positioned(
               top: 0,
               left: 0,
@@ -75,8 +74,6 @@ class _WomenDayScreenState extends State<WomenDayScreen>
                 fit: BoxFit.contain,
               ),
             ),
-
-            // Цветок в правом верхнем углу
             Positioned(
               top: 0,
               right: 0,
@@ -87,13 +84,21 @@ class _WomenDayScreenState extends State<WomenDayScreen>
               ),
             ),
 
-            // Изображение neoflex по центру
+            // Центр: картинка + логотип
             Center(
-              child: Image.asset(
-                'assets/images/woman_day/neoflex.png',
-                width: 250,
-                height: 250,
-                fit: BoxFit.contain,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/march.png',
+                    width: 230,
+                  ),
+                  const SizedBox(height: 20),
+                  Image.asset(
+                    'assets/images/woman_day/neoflex.png',
+                    width: 160,
+                  ),
+                ],
               ),
             ),
 
@@ -110,7 +115,7 @@ class _WomenDayScreenState extends State<WomenDayScreen>
                     scale: _scaleAnimation.value,
                     child: Image.asset(
                       'assets/images/woman_day/but.png',
-                      width: 120, // Увеличили размер бабочки
+                      width: 120,
                       fit: BoxFit.contain,
                     ),
                   ),
@@ -118,7 +123,7 @@ class _WomenDayScreenState extends State<WomenDayScreen>
               },
             ),
 
-            // Изображение внизу экрана
+            // Нижнее оформление
             Positioned(
               bottom: 0,
               left: 0,
@@ -135,3 +140,4 @@ class _WomenDayScreenState extends State<WomenDayScreen>
     );
   }
 }
+

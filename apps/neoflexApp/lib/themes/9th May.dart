@@ -30,35 +30,52 @@ class NinthMayScreen extends StatelessWidget {
               stops: [0.0, 0.5, 1.0],
             ),
           ),
-          child: Stack(
-            children: [
-              Align(
-                alignment: Alignment.topCenter,
-                child: Image.asset(
-                  'assets/images/9_may/up.png',
-                  width: 450,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Image.asset(
-                  'assets/images/9_may/down.png',
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Center(
-                child: SizedBox(
-                  width: screenWidth * 0.7,
-                  child: Image.asset(
-                    'assets/images/9_may/neoflex.png',
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ),
-            ],
+         child: Stack(
+  children: [
+    Align(
+      alignment: Alignment.topCenter,
+      child: Image.asset(
+        'assets/images/9_may/up.png',
+        width: 450,
+        fit: BoxFit.cover,
+      ),
+    ),
+    Align(
+      alignment: Alignment.bottomCenter,
+      child: Image.asset(
+        'assets/images/9_may/down.png',
+        width: double.infinity,
+        fit: BoxFit.cover,
+      ),
+    ),
+    
+    // Центр: картинка выше логотипа
+    Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Картинка выше логотипа
+          Image.asset(
+            'assets/may.png',
+            width: screenWidth * 0.5,
+            fit: BoxFit.contain,
           ),
+          const SizedBox(height: 20),
+
+          // Логотип
+          SizedBox(
+            width: screenWidth * 0.7,
+            child: Image.asset(
+              'assets/images/9_may/neoflex.png',
+              fit: BoxFit.contain,
+            ),
+          ),
+        ],
+      ),
+    ),
+  ],
+)
+
         ),
       ),
     );

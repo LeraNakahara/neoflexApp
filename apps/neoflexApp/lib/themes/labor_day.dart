@@ -130,14 +130,23 @@ class _LaborDayState extends State<LaborDay> with TickerProviderStateMixin {
           ),
 
          
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'assets/neoflexlogo.png',
-                  width: 140,
-                ),
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  
+                  Image.asset(
+                    'assets/may1.png', 
+                    width: 230,
+                  ),
+
+                  const SizedBox(height: 20),
+
+                
+                  Container(
+                    margin: const EdgeInsets.all(10),
+                    child: Image.asset('assets/neoflexlogo.png'),
+                  ),
                 const SizedBox(height: 30),
                 const Text(
                   'Мир. Труд. Май',

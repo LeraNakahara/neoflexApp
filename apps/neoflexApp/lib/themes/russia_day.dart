@@ -71,14 +71,16 @@ class _RussiaDayState extends State<RussiaDay> with SingleTickerProviderStateMix
             ),
           ),
 
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'assets/neoflexlogo.png',
-                  width: 200,
-                ),
+             Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    
+                    Image.asset(
+                      'assets/russia.png', 
+                      width: 230,
+                    ),
+
                 const SizedBox(height: 30),
                 ShaderMask(
                   shaderCallback: (bounds) => const LinearGradient(

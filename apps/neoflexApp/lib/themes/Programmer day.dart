@@ -22,21 +22,25 @@ class ProgrammerDayScreen extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            // Центральное изображение neoflex_2.png
+            // Центр экрана — логотип и картинка
             Center(
-              child: Image.asset(
-                'assets/images/programmers_day/neoflex_2.png',
-                width: 250, // Настройте размер по необходимости
-                height: 250,
-                fit: BoxFit.contain,
-                errorBuilder: (context, error, stackTrace) {
-                  return const Text('Не удалось загрузить изображение',
-                      style: TextStyle(color: Colors.white));
-                },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/prog.png',
+                    width: 230,
+                  ),
+                  const SizedBox(height: 20),
+                  Container(
+                    margin: const EdgeInsets.all(10),
+                    child: Image.asset('assets/neoflexlogo.png'),
+                  ),
+                ],
               ),
             ),
 
-            // Изображение внизу экрана
+            // Нижнее изображение
             Positioned(
               bottom: -20,
               left: 0,
@@ -44,10 +48,12 @@ class ProgrammerDayScreen extends StatelessWidget {
               child: Center(
                 child: Image.asset(
                   'assets/images/programmers_day/down.png',
-                  height: 500,
+                  height: 400,
                   errorBuilder: (context, error, stackTrace) {
-                    return const Text('Не удалось загрузить изображение',
-                        style: TextStyle(color: Colors.white));
+                    return const Text(
+                      'Не удалось загрузить изображение',
+                      style: TextStyle(color: Colors.white),
+                    );
                   },
                 ),
               ),
