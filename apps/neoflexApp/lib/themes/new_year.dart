@@ -75,7 +75,7 @@ class NewYear extends StatelessWidget {
           ),
         ),
 
-          // 🎄 4. Ёлка и (опционально) подарки слева внизу
+
          Align(
   alignment: Alignment.bottomCenter,
   child: Padding(
@@ -84,7 +84,6 @@ class NewYear extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        // 🎄 Ёлка
         Image.asset(
           'assets/tree.png',
           width: 130,
@@ -92,7 +91,6 @@ class NewYear extends StatelessWidget {
         ),
         const SizedBox(width: 2),
 
-        // 🎁 Подарок
         Image.asset(
           'assets/gift.png',
           width: 150,
@@ -100,7 +98,7 @@ class NewYear extends StatelessWidget {
         ),
         const SizedBox(width: 4),
 
-        // ⛄ Снеговик
+      
         Image.asset(
           'assets/snowman.png',
           width: 100,
@@ -112,20 +110,25 @@ class NewYear extends StatelessWidget {
 ),
 
 
-          // 🎁 5. Центр: логотип и текст
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Логотип
-                Container(
-                  margin: const EdgeInsets.all(10),
-                  child: Image.asset('assets/neoflexlogo.png'),
-                ),
+          
+        Center(
+  child: Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      
+      Image.asset(
+        'assets/december.png', 
+        width: 120,
+      ),
 
-                const SizedBox(height: 30),
+      const SizedBox(height: 20),
 
-                // Поздравление
+    
+      Container(
+        margin: const EdgeInsets.all(10),
+        child: Image.asset('assets/neoflexlogo.png'),
+      ),
+                
                Text(
     'С Новым\n${DateTime.now().year + 1}!',
     textAlign: TextAlign.center,

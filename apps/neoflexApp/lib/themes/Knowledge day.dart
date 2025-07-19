@@ -55,7 +55,7 @@ class KnowledgeDayScreen extends StatelessWidget {
                     children: [
                       // Изображение колокольчика (чуть выше центра)
                       Image.asset(
-                        'assets/images/knowledge_day/bell.png',
+                        'assets/september.png',
                         width: screenWidth * 0.5,
                         fit: BoxFit.contain,
                       ),
